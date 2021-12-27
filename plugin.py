@@ -19,8 +19,8 @@ def plugin_unloaded():
 
 class LspCspellPlugin(NpmClientHandler):
     package_name = __package__
-    server_directory = 'language-server/packages/_server'
-    server_binary_path = os.path.join(server_directory, 'dist', 'main.js')
+    server_directory = 'language-server'
+    server_binary_path = os.path.join(server_directory, 'packages/_server/dist', 'main.js')
     skip_npm_install = True
 
     @classmethod
@@ -34,7 +34,7 @@ class LspCspellPlugin(NpmClientHandler):
         if not workspace_folders:
             return "Requires a folder to start."
         # Config pattern is found here:
-        # https://github.com/cspelllabs/cspell-intellisense/blob/766a5d533dcb68640ce6b3270488f6701dd1173d/packages/vscode-cspell/src/extension.ts#L40
+        # https://github.com/streetsidesoftware/vscode-spell-checker#example-cspelljson-file
         config_file_pattern = r'^(cspell|cspell\.config)\.(json|js)$'
         folder_exclude_patterns = set(
             sublime.load_settings('Preferences.sublime-settings').get("folder_exclude_patterns", [])

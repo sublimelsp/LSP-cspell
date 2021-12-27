@@ -1,0 +1,10 @@
+[
+    {
+        "caption": "Preferences: LSP-cspell Settings",
+        "command": "edit_settings",
+        "args": {
+            "base_file": "${packages}/LSP-cspell/LSP-cspell.sublime-settings",
+            "default": "// Settings in here override those in \"LSP-cspell/LSP-cspell.sublime-settings\"\n\n{\n\t$0\n}\n",
+        },
+    },
+]

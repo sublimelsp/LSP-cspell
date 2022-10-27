@@ -24,8 +24,7 @@ class LspCspellPlugin(NpmClientHandler):
     def on_workspace_config_for_document(
         self, params: WorkspaceConfigForDocumentRequest, respond: Callable[[WorkspaceConfigForDocumentResponse], None]
     ) -> None:
-        # TODO: this method is necessary to enable code actions to show spell check fixes...
-        # it sill doesn't work but it is a start...
+        # It looks like this method is necessary to enable code actions...
         respond({
             'uri': None,
             'workspaceFile': None,

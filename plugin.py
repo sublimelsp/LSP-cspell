@@ -1,5 +1,7 @@
-from .types import WorkspaceConfigForDocumentRequest, WorkspaceConfigForDocumentResponse
-from LSP.plugin.core.typing import Callable
+import sublime
+from .types import CSpell_EditText_Arguments, WorkspaceConfigForDocumentRequest, WorkspaceConfigForDocumentResponse
+from LSP.plugin.core.typing import Any, Callable, Mapping, cast
+from LSP.plugin.formatting import apply_text_edits_to_view
 from lsp_utils import NpmClientHandler, request_handler
 import os
 
@@ -31,3 +33,21 @@ class LspCspellPlugin(NpmClientHandler):
             'words': {},
             'ignoreWords': {}
         })
+
+    def on_pre_server_command(self, params: Mapping[str, Any], done_callback: Callable[[], None]) -> bool:
+
+        def command_is_handled():
+            done_callback()
+            return True
+
+        def command_is_unhandled():
+            return False
+
+        if params['command'] == 'cSpell.editText':
+            _uri, _document_version, text_edits = cast(CSpell_EditText_Arguments, params['arguments'])
+            view = sublime.active_window().active_view()
+            if not view:
+                return command_is_handled()
+            apply_text_edits_to_view(text_edits, view)  # todo: not public API
+            return command_is_handled()
+        return command_is_unhandled()

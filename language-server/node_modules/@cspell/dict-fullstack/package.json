@@ -1,0 +1,41 @@
+{
+  "name": "@cspell/dict-fullstack",
+  "version": "2.0.6",
+  "description": "Dictionary of terms used in Fullstack development.",
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": "./cspell-ext.json",
+    "./cspell": "./cspell-ext.json",
+    "./cspell-ext.json": "./cspell-ext.json"
+  },
+  "scripts": {
+    "build": "cspell-tools-cli compile --split \"fullstack.txt\" -o .",
+    "test": "cat \"fullstack.txt\" | cspell -v -c ./cspell-ext.json --local=* --languageId=php stdin",
+    "prepublishOnly": "echo pre-publish",
+    "prepare": "yarn run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/streetsidesoftware/cspell-dicts.git"
+  },
+  "keywords": [
+    "cspell",
+    "cspell-ext",
+    "fullstack",
+    "dictionary",
+    "spelling"
+  ],
+  "author": "Jason Dent",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/streetsidesoftware/cspell-dicts/issues"
+  },
+  "homepage": "https://github.com/streetsidesoftware/cspell-dicts/blob/main/dictionaries/fullstack#readme",
+  "files": [
+    "fullstack.txt.gz",
+    "cspell-ext.json"
+  ],
+  "gitHead": "a5c1acfb731309cac15111995312b66687f6064a"
+}

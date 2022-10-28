@@ -1694,12 +1694,6 @@
                       "scope": "resource",
                       "type": "number"
                     },
-                    "cSpell.showCommandsInEditorContextMenu": {
-                      "default": true,
-                      "description": "Show Spell Checker actions in Editor Context Menu",
-                      "scope": "application",
-                      "type": "boolean"
-                    },
                     "cSpell.showStatus": {
                       "default": true,
                       "description": "Display the spell checker status on the status bar.",

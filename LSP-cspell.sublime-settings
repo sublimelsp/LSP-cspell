@@ -77,9 +77,8 @@
         "cSpell.noSuggestDictionaries": [],
         "cSpell.numSuggestions": 8,
         "cSpell.overrides": [],
-        // I validated settings till this point
         "cSpell.patterns": [],
-        "cSpell.showCommandsInEditorContextMenu": true,
+        // I validated settings till this point
         "cSpell.showStatus": true,
         "cSpell.showStatusAlignment": "Right",
         "cSpell.spellCheckDelayMs": 50,

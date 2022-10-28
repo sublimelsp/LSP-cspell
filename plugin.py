@@ -19,7 +19,7 @@ class LspCspellPlugin(NpmClientHandler):
     server_directory = 'language-server'
     server_binary_path = os.path.join(server_directory, '_server/dist', 'main.js')
     skip_npm_install = True
-
+    # hesdad
     @request_handler('onWorkspaceConfigForDocumentRequest')
     def on_workspace_config_for_document(
         self, params: WorkspaceConfigForDocumentRequest, respond: Callable[[WorkspaceConfigForDocumentResponse], None]

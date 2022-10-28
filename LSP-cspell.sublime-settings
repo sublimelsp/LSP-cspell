@@ -12,13 +12,6 @@
             "untitled",
             "vscode-notebook-cell"
         ],
-        // The maximum average length of chunks of text without word breaks.
-        // A chunk is the characters between absolute word breaks.
-        // Absolute word breaks match: `/[\s,{}[\]]/`
-        // **Error Message:** _Average Word Size is Too High._
-        // If you are seeing this message, it means that the file contains mostly long lines
-        // without many word breaks.
-        "cSpell.blockCheckingWhenAverageChunkSizeGreatherThan": 80,
         // The maximum line length.
         // Block spell checking if lines are longer than the value given.
         // This is used to prevent spell checking generated files.
@@ -55,15 +48,6 @@
         // }
         // ```
         "cSpell.customDictionaries": {},
-        // Define custom dictionaries to be included by default for the folder.
-        // If `addWords` is `true` words will be added to this dictionary.
-        "cSpell.customFolderDictionaries": [],
-        // Define custom dictionaries to be included by default for the user.
-        // If `addWords` is `true` words will be added to this dictionary.
-        "cSpell.customUserDictionaries": [],
-        // Define custom dictionaries to be included by default for the workspace.
-        // If `addWords` is `true` words will be added to this dictionary.
-        "cSpell.customWorkspaceDictionaries": [],
         // Issues found by the spell checker are marked with a Diagnostic Severity Level. This
         // affects the color of squiggle.
         // possible values: Error, Warning, Information, Hint
@@ -239,7 +223,7 @@
         // ```
         // ${workspaceFolder:client}
         // ```
-        "cSpell.workspaceRootPath": "",
+        "cSpell.workspaceRootPath": ""
     },
     "selector": "source.jsx | source.js.react | source.js | source.tsx | source.ts | source.css | source.scss | source.less | text.html.vue | text.html.svelte | text.html.basic | text.html.twig | text.blade | embedding.php | source.python"
 }

@@ -1694,12 +1694,6 @@
                       "scope": "resource",
                       "type": "number"
                     },
-                    "cSpell.showStatus": {
-                      "default": true,
-                      "description": "Display the spell checker status on the status bar.",
-                      "scope": "application",
-                      "type": "boolean"
-                    },
                     "cSpell.showStatusAlignment": {
                       "default": "Right",
                       "description": "The side of the status bar to display the spell checker status.",

@@ -78,9 +78,8 @@
         "cSpell.numSuggestions": 8,
         "cSpell.overrides": [],
         "cSpell.patterns": [],
-        // I validated settings till this point
-        "cSpell.showStatus": true,
         "cSpell.showStatusAlignment": "Right",
+        // I validated settings till this point
         "cSpell.spellCheckDelayMs": 50,
         "cSpell.spellCheckOnlyWorkspaceFiles": false,
         "cSpell.suggestionMenuType": "quickPick",

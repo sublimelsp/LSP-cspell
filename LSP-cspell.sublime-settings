@@ -56,16 +56,12 @@
         "cSpell.experimental.enableRegexpView": false,
         "cSpell.files": [],
         "cSpell.fixSpellingWithRenameProvider": true,
-        // I validated settings till this point
         "cSpell.flagWords": [],
         "cSpell.globRoot": "",
-        "cSpell.ignorePaths": [
+        "cSpell.ignorePaths":[
             "package-lock.json",
             "node_modules",
-            "vscode-extension",
-            ".git/objects",
-            ".vscode",
-            ".vscode-insiders"
+            ".git/objects"
         ],
         "cSpell.ignoreRegExpList": [],
         "cSpell.ignoreWords": [],
@@ -81,8 +77,8 @@
         "cSpell.noSuggestDictionaries": [],
         "cSpell.numSuggestions": 8,
         "cSpell.overrides": [],
+        // I validated settings till this point
         "cSpell.patterns": [],
-        "cSpell.showAutocompleteSuggestions": false,
         "cSpell.showCommandsInEditorContextMenu": true,
         "cSpell.showStatus": true,
         "cSpell.showStatusAlignment": "Right",

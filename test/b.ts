@@ -1,0 +1,3 @@
+import { firstValue } from ".";
+
+firstValue

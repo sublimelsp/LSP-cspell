@@ -1,3 +1,5 @@
+from LSP.plugin.core.protocol import Request, TextEdit
+from LSP.plugin.core.views import range_to_region
 import sublime
 from .types import CSpell_EditText_Arguments, WorkspaceConfigForDocumentRequest, WorkspaceConfigForDocumentResponse
 from LSP.plugin.core.typing import Any, Callable, Mapping, cast
@@ -42,11 +44,32 @@ class LspCspellPlugin(NpmClientHandler):
         def command_is_unhandled():
             return False
 
-        if params['command'] == 'cSpell.editText':
-            _uri, _document_version, text_edits = cast(CSpell_EditText_Arguments, params['arguments'])
+        session = self.weaksession()
+        if not session:
+            return command_is_unhandled()
+
+        def handler_apply_text_edits(arguments: CSpell_EditText_Arguments) -> bool:
+            _uri, _document_version, text_edits = arguments
             view = sublime.active_window().active_view()
             if not view:
                 return command_is_handled()
-            apply_text_edits_to_view(text_edits, view)  # todo: not public API
+            should_send_rename_request = session.config.settings.get('cSpell.fixSpellingWithRenameProvider')
+            if should_send_rename_request:
+                text_edit = text_edits[0]
+                edit_region = range_to_region(text_edit['range'], view)
+                whole_word = view.substr(view.word(edit_region.begin()))
+                incorrect_word = view.substr(edit_region)
+                correct_word = text_edit['newText']
+                new_name = whole_word.replace(incorrect_word, correct_word)
+                view.run_command('lsp_symbol_rename', {
+                    "new_name": new_name,
+                    "position": edit_region.begin()
+                })
+            else:
+                apply_text_edits_to_view(text_edits, view)  # todo: not public API
             return command_is_handled()
+
+        if params['command'] == 'cSpell.editText':
+            return handler_apply_text_edits(cast(CSpell_EditText_Arguments, params['arguments']))
+
         return command_is_unhandled()

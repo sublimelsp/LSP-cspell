@@ -1,5 +1,9 @@
-const firstVallue = 25; // we startt with twenty five
+export const firstValue = 25; // i've startt with twenty five
 
-function myFuntionExample() {
+function myFustianExample() {
     console.log('Hey foolks!');
 }
+
+myFustianExample()
+
+console.log(firstValue);

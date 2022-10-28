@@ -1694,20 +1694,6 @@
                       "scope": "resource",
                       "type": "number"
                     },
-                    "cSpell.showStatusAlignment": {
-                      "default": "Right",
-                      "description": "The side of the status bar to display the spell checker status.",
-                      "enum": [
-                        "Left",
-                        "Right"
-                      ],
-                      "enumDescriptions": [
-                        "Left Side of Statusbar",
-                        "Right Side of Statusbar"
-                      ],
-                      "scope": "application",
-                      "type": "string"
-                    },
                     "cSpell.showSuggestionsLinkInEditorContextMenu": {
                       "default": true,
                       "description": "Show Spelling Suggestions link in the top level context menu.",

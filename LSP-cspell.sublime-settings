@@ -78,7 +78,6 @@
         "cSpell.numSuggestions": 8,
         "cSpell.overrides": [],
         "cSpell.patterns": [],
-        "cSpell.showStatusAlignment": "Right",
         // I validated settings till this point
         "cSpell.spellCheckDelayMs": 50,
         "cSpell.spellCheckOnlyWorkspaceFiles": false,

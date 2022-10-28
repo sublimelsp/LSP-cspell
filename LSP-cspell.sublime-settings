@@ -78,10 +78,9 @@
         "cSpell.numSuggestions": 8,
         "cSpell.overrides": [],
         "cSpell.patterns": [],
-        // I validated settings till this point
         "cSpell.spellCheckDelayMs": 50,
         "cSpell.spellCheckOnlyWorkspaceFiles": false,
-        "cSpell.suggestionMenuType": "quickPick",
+        // I validated settings till this point
         "cSpell.suggestionNumChanges": 3,
         "cSpell.suggestionsTimeout": 400,
         "cSpell.useGitignore": true,

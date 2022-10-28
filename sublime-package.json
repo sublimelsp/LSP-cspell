@@ -27,25 +27,6 @@
                       "scope": "resource",
                       "type": "boolean"
                     },
-                    "cSpell.advanced.feature.useReferenceProviderRemove": {
-                      "markdownDescription": "Used to work around bugs in Reference Providers and Rename Providers.\nAnything matching the provided Regular Expression will be removed from the text\nbefore sending it to the Rename Provider.\n\nSee: [Markdown: Fixing spelling issues in Header sections changes the entire line · Issue #1987](https://github.com/streetsidesoftware/vscode-spell-checker/issues/1987)\n\nIt is unlikely that you would need to edit this setting. If you need to, please open an issue at\n[Spell Checker Issues](https://github.com/streetsidesoftware/vscode-spell-checker/issues)\n\nThis feature is used in connection with `#cSpell.advanced.feature.useReferenceProviderWithRename#`",
-                      "scope": "language-overridable",
-                      "title": "Remove Matching Characters Before Rename",
-                      "type": "string"
-                    },
-                    "cSpell.advanced.feature.useReferenceProviderWithRename": {
-                      "default": false,
-                      "markdownDescription": "Use the Reference Provider when fixing spelling issues with the Rename Provider.\nThis feature is used in connection with `#cSpell.fixSpellingWithRenameProvider#`",
-                      "scope": "language-overridable",
-                      "title": "Use Reference Provider During Rename",
-                      "type": "boolean"
-                    },
-                    "cSpell.fixSpellingWithRenameProvider": {
-                      "default": true,
-                      "markdownDescription": "Use Rename Provider when fixing spelling issues.",
-                      "scope": "language-overridable",
-                      "type": "boolean"
-                    },
                     "cSpell.logFile": {
                       "description": "Have the logs written to a file instead of to VS Code.",
                       "scope": "window",

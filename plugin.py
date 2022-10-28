@@ -53,20 +53,7 @@ class LspCspellPlugin(NpmClientHandler):
             view = sublime.active_window().active_view()
             if not view:
                 return command_is_handled()
-            should_send_rename_request = session.config.settings.get('cSpell.fixSpellingWithRenameProvider')
-            if should_send_rename_request:
-                text_edit = text_edits[0]
-                edit_region = range_to_region(text_edit['range'], view)
-                whole_word = view.substr(view.word(edit_region.begin()))
-                incorrect_word = view.substr(edit_region)
-                correct_word = text_edit['newText']
-                new_name = whole_word.replace(incorrect_word, correct_word)
-                view.run_command('lsp_symbol_rename', {
-                    "new_name": new_name,
-                    "position": edit_region.begin()
-                })
-            else:
-                apply_text_edits_to_view(text_edits, view)  # todo: not public API
+            apply_text_edits_to_view(text_edits, view)  # todo: not public API
             return command_is_handled()
 
         if params['command'] == 'cSpell.editText':

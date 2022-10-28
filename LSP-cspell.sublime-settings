@@ -80,7 +80,6 @@
         "cSpell.patterns": [],
         "cSpell.spellCheckDelayMs": 50,
         "cSpell.spellCheckOnlyWorkspaceFiles": false,
-        // I validated settings till this point
         "cSpell.suggestionNumChanges": 3,
         "cSpell.suggestionsTimeout": 400,
         "cSpell.useGitignore": true,

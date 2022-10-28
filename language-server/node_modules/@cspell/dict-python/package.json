@@ -1,0 +1,48 @@
+{
+  "name": "@cspell/dict-python",
+  "version": "3.0.6",
+  "description": "Python dictionary for cspell.",
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": "./cspell-ext.json",
+    "./cspell": "./cspell-ext.json",
+    "./cspell-ext.json": "./cspell-ext.json"
+  },
+  "scripts": {
+    "build": "yarn run build-python && yarn run build-common",
+    "build-python": "cspell-tools-cli compile \"src/python/*.txt\" \"src/additional_words.txt\" --split --keep-raw-case --merge python -o .",
+    "build-common": "cspell-tools-cli compile \"src/common/*.txt\" --keep-raw-case --merge python-common -o .",
+    "test-dictionary": "cspell -v -c ./cspell-ext.json --local=en --languageId=python \"src/python/py*.txt\"",
+    "test-samples": "cspell -v -c ./cspell-ext.json \"samples/**/*.py\"",
+    "test": "yarn run test-dictionary && yarn run test-samples",
+    "update-python-lib": "./scripts/fetch-python.sh",
+    "prepublishOnly": "echo pre-publish",
+    "prepare": "yarn run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/streetsidesoftware/cspell-dicts.git"
+  },
+  "keywords": [
+    "cspell",
+    "cspell-ext",
+    "python",
+    "Python",
+    "dictionary",
+    "spelling"
+  ],
+  "author": "Jason Dent",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/streetsidesoftware/cspell-dicts/issues"
+  },
+  "homepage": "https://github.com/streetsidesoftware/cspell-dicts/blob/main/dictionaries/python#readme",
+  "files": [
+    "python.txt.gz",
+    "python-common.txt.gz",
+    "cspell-ext.json"
+  ],
+  "gitHead": "4f8f3a9317913cafe68f160e3a1e94cef559fbc3"
+}

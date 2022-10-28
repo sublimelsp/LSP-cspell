@@ -1,0 +1,25 @@
+{
+    "id": "fullstack",
+    "version": "0.2",
+    "name": "Fullstack",
+    "description": "Common words encountered during fullstack development",
+    "dictionaryDefinitions": [
+        {
+            "name": "fullstack",
+            "path": "./fullstack.txt.gz",
+            "description": "Common words encountered during fullstack development"
+        }
+    ],
+    "dictionaries": [],
+    "languageSettings": [
+        {
+            "languageId": "php,javascript,typescript,cpp,c,python,ruby,swift,csharp,ada,html,java,lua,h,hpp,rust,scala",
+            "locale": "*",
+            "includeRegExpList": [],
+            "ignoreRegExpList": [],
+            "patterns": [],
+            "dictionaries": ["fullstack"],
+            "dictionaryDefinitions": []
+        }
+    ]
+}

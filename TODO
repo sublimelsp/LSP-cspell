@@ -16,5 +16,5 @@ Order of precedence:
     Workspace Folder *.sublime-project.
     VS Code Preferences cSpell section.
 
-[] how to add your own custom directory
+[x] how to add your own custom directory
 https://github.com/streetsidesoftware/vscode-spell-checker#how-to-add-your-own-dictionaries

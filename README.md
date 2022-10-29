@@ -4,6 +4,8 @@ A basic spell checker that works well with camelCase code for Sublime's LSP.
 
 Provided through [Spelling Checker](https://github.com/streetsidesoftware/vscode-spell-checker).
 
+> Please see Spelling Checker [documentation](https://github.com/streetsidesoftware/vscode-spell-checker) for more info. The majority of the documentation can be applied to LSP-cspell, with the exception of VS Code specific settings.
+
 ### Installation
 
 * Install [LSP](https://packagecontrol.io/packages/LSP) and `LSP-cspell` via Package Control.

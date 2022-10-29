@@ -1,0 +1,21 @@
+TODO
+[] Check if supported languages work. https://github.com/streetsidesoftware/vscode-spell-checker#supported-languages
+[] Check if we can add new dictionaries https://github.com/streetsidesoftware/vscode-spell-checker#add-on-language-dictionaries
+[] Add specialized dictionaries https://github.com/streetsidesoftware/vscode-spell-checker#add-on-specialized-dictionaries
+[x] https://github.com/streetsidesoftware/vscode-spell-checker#enabled-file-types
+
+[] Enable Disable file type https://github.com/streetsidesoftware/vscode-spell-checker#enable--disable-file-types
+
+[] Customization
+https://github.com/streetsidesoftware/vscode-spell-checker#customization
+
+The spell checker configuration can be controlled via Sublime Text project file or cspell.json configuration file.
+
+Order of precedence:
+
+    Workspace Folder cspell.json.
+    Workspace Folder *.sublime-project.
+    VS Code Preferences cSpell section.
+
+[] how to add your own custom directory
+https://github.com/streetsidesoftware/vscode-spell-checker#how-to-add-your-own-dictionaries

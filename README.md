@@ -25,4 +25,4 @@ Here is an example of how to setup the Cspell for your language:
 
 ### Add-On Specialized Dictionaries
 
-See [example](./examples/add-on-specialized-dictionaries/README.md) on how to configure specialized dictionaries.
+See [example](./examples/add-on-specialized-dictionaries) on how to configure specialized dictionaries.

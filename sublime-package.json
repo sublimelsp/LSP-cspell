@@ -21,6 +21,12 @@
                 "settings": {
                   "additionalProperties": false,
                   "properties": {
+                    "cSpell.enabled": {
+                      "default": true,
+                      "description": "Enable / Disable the spell checker.",
+                      "scope": "resource",
+                      "type": "boolean"
+                    },
                     "cSpell.logFile": {
                       "description": "Have the logs written to a file.",
                       "scope": "window",

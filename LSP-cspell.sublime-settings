@@ -1,5 +1,4 @@
 {
-    "enabled": true,
     "settings": {
         "cSpell.allowCompoundWords": false,
         "cSpell.allowedSchemas": [
@@ -15,6 +14,7 @@
         "cSpell.dictionaries": [],
         "cSpell.dictionaryDefinitions": [],
         "cSpell.enableFiletypes": [],
+        "cSpell.enabled": true,
         "cSpell.enabledLanguageIds": [
             "asciidoc",
             "c",

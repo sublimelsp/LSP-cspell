@@ -90,4 +90,3 @@ class LspCspellPlugin(NpmClientHandler):
             return add_words_to_user_settings(cast(AddWordsToVSCodeSettingsFromServerArguments, params['arguments']))
 
         return command_is_unhandled()
-

@@ -3,7 +3,7 @@
     "dictionaryDefinitions": [
         {
             "name": "medicalTerms",
-            "path": "./custom-words.txt",
+            "path": "./medicalTerms.txt",
             "description": "Workspace level words",
             "addWords": true
         }

@@ -10,5 +10,5 @@ msyyFastianExample()
 msyyFastianExample()
 msyyFastianExample()
 msyyFastianExample()
-// hte is the time, hello
+// hte is the time, hello maloprodjan
 console.log(firstvalue);

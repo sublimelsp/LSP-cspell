@@ -1,4 +1,4 @@
-from LSP.plugin.core.protocol import URI, TextEdit
+from LSP.plugin.core.protocol import URI, Any, Literal, TextEdit
 from LSP.plugin.core.sessions import DocumentUri
 from LSP.plugin.core.typing import Dict, List, Optional, Tuple, TypedDict
 
@@ -17,4 +17,14 @@ WorkspaceConfigForDocumentResponse = TypedDict('WorkspaceConfigForDocumentRespon
 })
 
 DocumentVersion = int
-CSpell_EditText_Arguments = Tuple[URI, DocumentVersion, List[TextEdit]]
+EditTextArguments = Tuple[URI, DocumentVersion, List[TextEdit]]
+
+Word = str
+CurrentFileURI = URI
+ConfigFileLocation = TypedDict("ConfigFileLocation", {
+    'uri': URI,
+    'name': str
+})
+AddWordsToConfigFileFromServerArguments = Tuple[List[Word], CurrentFileURI, ConfigFileLocation]
+
+AddWordsToVSCodeSettingsFromServerArguments = Tuple[List[Word], CurrentFileURI, Literal['user']]

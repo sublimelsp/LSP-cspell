@@ -1,8 +1,7 @@
-from LSP.plugin.core.protocol import Request, TextEdit
-from LSP.plugin.core.views import range_to_region
+from LSP.plugin.core.views import parse_uri
 import sublime
-from .types import CSpell_EditText_Arguments, WorkspaceConfigForDocumentRequest, WorkspaceConfigForDocumentResponse
-from LSP.plugin.core.typing import Any, Callable, Mapping, cast
+from .types import AddWordsToConfigFileFromServerArguments, AddWordsToVSCodeSettingsFromServerArguments, EditTextArguments, WorkspaceConfigForDocumentRequest, WorkspaceConfigForDocumentResponse
+from LSP.plugin.core.typing import Any, Callable, Mapping, cast, Dict
 from LSP.plugin.formatting import apply_text_edits_to_view
 from lsp_utils import NpmClientHandler, request_handler
 import os
@@ -48,7 +47,7 @@ class LspCspellPlugin(NpmClientHandler):
         if not session:
             return command_is_unhandled()
 
-        def handler_apply_text_edits(arguments: CSpell_EditText_Arguments) -> bool:
+        def handle_edit_text(arguments: EditTextArguments) -> bool:
             _uri, _document_version, text_edits = arguments
             view = sublime.active_window().active_view()
             if not view:
@@ -57,6 +56,38 @@ class LspCspellPlugin(NpmClientHandler):
             return command_is_handled()
 
         if params['command'] == 'cSpell.editText':
-            return handler_apply_text_edits(cast(CSpell_EditText_Arguments, params['arguments']))
+            return handle_edit_text(cast(EditTextArguments, params['arguments']))
+
+        def add_words_to_config_file(arguments: AddWordsToConfigFileFromServerArguments) -> bool:
+            new_words, uri, config_file = arguments
+            _, workspace_config_path = parse_uri(config_file['uri'])
+            workspace_config = {}
+            with open(workspace_config_path) as f:
+                contents = f.read()
+                if contents:
+                    workspace_config = sublime.decode_value(contents)
+            with open(workspace_config_path, 'w') as f:
+                workspace_config.setdefault('words', [])
+                workspace_config['words'] = workspace_config['words'] + new_words
+                f.write(sublime.encode_value(workspace_config, pretty=True))
+            return command_is_handled()
+
+        if params['command'] == 'cSpell.addWordsToConfigFileFromServer':
+            return add_words_to_config_file(cast(AddWordsToConfigFileFromServerArguments, params['arguments']))
+
+        def add_words_to_user_settings(arguments: AddWordsToVSCodeSettingsFromServerArguments) -> bool:
+            new_words, _, _ = arguments
+            settings = sublime.load_settings('LSP-cspell.sublime-settings')
+            server_settings = settings.get('settings', {})  # type: Dict[str, str]
+            old_words = server_settings.get('cSpell.words') or []
+            words = old_words + new_words  # type: ignore
+            server_settings['cSpell.words'] = words
+            settings.set('settings', server_settings)
+            sublime.save_settings('LSP-cspell.sublime-settings')
+            return command_is_handled()
+
+        if params['command'] == 'cSpell.addWordsToVSCodeSettingsFromServer':
+            return add_words_to_user_settings(cast(AddWordsToVSCodeSettingsFromServerArguments, params['arguments']))
 
         return command_is_unhandled()
+

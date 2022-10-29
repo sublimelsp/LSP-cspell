@@ -1,3 +1,3 @@
 import { firstValue } from ".";
 
-firstValue
+type hellowave = keyof typeof firstValue

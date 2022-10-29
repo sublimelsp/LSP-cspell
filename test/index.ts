@@ -1,9 +1,14 @@
-export const firstValue = 25; // i've startt with twenty five
+export const firstvalue = 25; // organization i've startt with twenty five
 
-function myFustianExample() {
+function msyyFastianExample() {
     console.log('Hey foolks!');
 }
 
-myFustianExample()
-
-console.log(firstValue);
+msyyFastianExample()
+msyyFastianExample()
+msyyFastianExample()
+msyyFastianExample()
+msyyFastianExample()
+msyyFastianExample()
+// hte is the time, hello
+console.log(firstvalue);

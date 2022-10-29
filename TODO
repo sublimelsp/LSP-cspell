@@ -1,9 +1,8 @@
 TODO
-[] Check if supported languages work. https://github.com/streetsidesoftware/vscode-spell-checker#supported-languages
-[] Check if we can add new dictionaries https://github.com/streetsidesoftware/vscode-spell-checker#add-on-language-dictionaries
+[x] Check if supported languages work. https://github.com/streetsidesoftware/vscode-spell-checker#supported-languages
+[x] Check if we can add new dictionaries https://github.com/streetsidesoftware/vscode-spell-checker#add-on-language-dictionaries
 [] Add specialized dictionaries https://github.com/streetsidesoftware/vscode-spell-checker#add-on-specialized-dictionaries
 [x] https://github.com/streetsidesoftware/vscode-spell-checker#enabled-file-types
-
 [] Enable Disable file type https://github.com/streetsidesoftware/vscode-spell-checker#enable--disable-file-types
 
 [] Customization

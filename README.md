@@ -22,3 +22,7 @@ Here is an example of how to setup the Cspell for your language:
 1. Search [npm](https://www.npmjs.com/search?q=%40cspell%2Fdict-) for your language. An example, for Portuguese dictionary, look for `@cspell/dict-pt-pt`.
 2. Follow the installation instructions on the [README](https://www.npmjs.com/package/cspell-dict-pt-pt#user-content-installation) of the package.
 3. Set the language to the `"cSpell.language"` to `"pt"` (if you want Portuguese) or `"en,pt"` (if you want English and Portuguese).
+
+### Add-On Specialized Dictionaries
+
+See [example](./examples/add-on-specialized-dictionaries/README.md) on how to configure specialized dictionaries.

@@ -75,6 +75,17 @@ class LspCspellPlugin(NpmClientHandler):
         if params['command'] == 'cSpell.addWordsToConfigFileFromServer':
             return add_words_to_config_file(cast(AddWordsToConfigFileFromServerArguments, params['arguments']))
 
+        def add_words_to_dictionary_file(arguments: AddWordsToConfigFileFromServerArguments) -> bool:
+            new_words, uri, config_file = arguments
+            _, workspace_config_path = parse_uri(config_file['uri'])
+            with open(workspace_config_path, 'a') as f:
+                for word in new_words:
+                    f.write("\n" + word)
+            return command_is_handled()
+
+        if params['command'] == "cSpell.addWordsToDictionaryFileFromServer":
+            return add_words_to_dictionary_file(cast(AddWordsToConfigFileFromServerArguments, params['arguments']))
+
         def add_words_to_user_settings(arguments: AddWordsToVSCodeSettingsFromServerArguments) -> bool:
             new_words, _, _ = arguments
             settings = sublime.load_settings('LSP-cspell.sublime-settings')

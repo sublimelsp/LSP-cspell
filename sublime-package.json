@@ -1567,6 +1567,7 @@
                         "python",
                         "pug",
                         "restructuredtext",
+                        "ruby",
                         "rust",
                         "scala",
                         "scss",

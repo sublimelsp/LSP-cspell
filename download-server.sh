@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# exit when any command fails
+set -e
+
 GITHUB_REPO_NAME="streetsidesoftware/vscode-spell-checker"
 
 # download the release

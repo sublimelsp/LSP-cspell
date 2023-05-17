@@ -18,7 +18,7 @@ def plugin_unloaded():
 class LspCspellPlugin(NpmClientHandler):
     package_name = __package__
     server_directory = 'language-server'
-    server_binary_path = os.path.join(server_directory, '_server/dist', 'main.js')
+    server_binary_path = os.path.join(server_directory, '_server', 'dist', 'main.js')
 
     @request_handler('onWorkspaceConfigForDocumentRequest')
     def on_workspace_config_for_document(

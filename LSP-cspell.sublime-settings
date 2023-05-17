@@ -54,6 +54,7 @@
             "yaml",
             "yml"
         ],
+        "cSpell.suggestWords": [],
         "cSpell.experimental.enableRegexpView": false,
         "cSpell.files": [],
         "cSpell.flagWords": [],
@@ -70,8 +71,9 @@
         "cSpell.language": "en",
         "cSpell.languageSettings": [],
         "cSpell.logLevel": "Error",
+        "cSpell.hideAddToDictionaryCodeActions": false,
         "cSpell.maxDuplicateProblems": 5,
-        "cSpell.maxNumberOfProblems": 100,
+        "cSpell.maxNumberOfProblems": 10000,
         "cSpell.minWordLength": 4,
         "cSpell.noConfigSearch": false,
         "cSpell.noSuggestDictionaries": [],

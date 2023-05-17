@@ -18,8 +18,11 @@ def plugin_unloaded():
 class LspCspellPlugin(NpmClientHandler):
     package_name = __package__
     server_directory = 'language-server'
-    server_binary_path = os.path.join(server_directory, '_server/dist', 'main.js')
-    skip_npm_install = True
+    server_binary_path = os.path.join(server_directory, '_server', 'dist', 'main.js')
+
+    @classmethod
+    def required_node_version(cls) -> str:
+        return ">16.0.0"
 
     @request_handler('onWorkspaceConfigForDocumentRequest')
     def on_workspace_config_for_document(

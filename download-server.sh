@@ -21,7 +21,7 @@ unzip -a code-spell-checker-*.vsix -d ./language-server-temp
 rm ./code-spell-checker-*.vsix
 
 # ./language-server/package.json is required for lsp_utils to work. Reuse package.json from the extension folder.
-cp ./language-server-temp/extension/package.json ./language-server
+jq 'del(.workspaces,.contributes)' ./language-server-temp/extension/package.json > ./language-server/package.json
 cp -R ./language-server-temp/extension/packages/_server ./language-server/_server
 
 rm -rf ./language-server-temp

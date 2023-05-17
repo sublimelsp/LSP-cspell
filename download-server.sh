@@ -5,7 +5,7 @@ GITHUB_REPO_NAME="streetsidesoftware/vscode-spell-checker"
 # download the release
 # more info here - https://gist.github.com/steinwaywhw/a4cd19cda655b8249d908261a62687f8
 
-wget $(curl -s https://api.github.com/repos/${GITHUB_REPO_NAME}/releases/latest | grep 'browser_' | cut -d\" -f4)
+wget "$(curl -s https://api.github.com/repos/${GITHUB_REPO_NAME}/releases/latest | grep 'browser_' | cut -d\" -f4)"
 
 # clean up
 rm -rf ./language-server-temp

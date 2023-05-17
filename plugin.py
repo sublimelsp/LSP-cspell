@@ -20,6 +20,10 @@ class LspCspellPlugin(NpmClientHandler):
     server_directory = 'language-server'
     server_binary_path = os.path.join(server_directory, '_server', 'dist', 'main.js')
 
+    @classmethod
+    def required_node_version(cls) -> str:
+        return ">16.0.0"
+
     @request_handler('onWorkspaceConfigForDocumentRequest')
     def on_workspace_config_for_document(
         self, params: WorkspaceConfigForDocumentRequest, respond: Callable[[WorkspaceConfigForDocumentResponse], None]

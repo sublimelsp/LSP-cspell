@@ -21,6 +21,7 @@
             "cpp",
             "csharp",
             "css",
+            "elixir",
             "git-commit",
             "go",
             "graphql",
@@ -96,6 +97,6 @@
         // in-memory buffers
         "buffer"
     ],
-    //          # c, cpp                                             # c#                      # css        # git-commit      # go                       # graphql        # haskell        # html            # java        # javascript, typescript, jsx, tsx                                  # json        # latex          # less        # markdown           # php                                         # plaintext  # python        # ruby        # rust        # scala        # scss        # swift        # vue           # svelte           # yaml
-    "selector": "source.c | source.c++ | source.objc | source.objc++ | source.cs | source.cake | source.css | text.git-commit | source.go | source.gomod | source.graphql | source.haskell | text.html.basic | source.java | source.jsx | source.js.react | source.js | source.tsx | source.ts | source.json | text.tex.latex | source.less | text.html.markdown | text.html.twig | text.blade | embedding.php | text.plain | source.python | source.ruby | source.rust | source.scala | source.scss | source.swift | text.html.vue | text.html.svelte | source.yml | source.yaml"
+    //          # c, cpp                                             # c#                      # css        # elixir        # git-commit      # go                       # graphql        # haskell        # html            # java        # javascript, typescript, jsx, tsx                                  # json        # latex          # less        # markdown           # php                                         # plaintext  # python        # ruby        # rust        # scala        # scss        # swift        # vue           # svelte           # yaml
+    "selector": "source.c | source.c++ | source.objc | source.objc++ | source.cs | source.cake | source.css | source.elixir | text.git-commit | source.go | source.gomod | source.graphql | source.haskell | text.html.basic | source.java | source.jsx | source.js.react | source.js | source.tsx | source.ts | source.json | text.tex.latex | source.less | text.html.markdown | text.html.twig | text.blade | embedding.php | text.plain | source.python | source.ruby | source.rust | source.scala | source.scss | source.swift | text.html.vue | text.html.svelte | source.yml | source.yaml"
 }

@@ -1,4 +1,4 @@
-from LSP.plugin.core.protocol import URI, Any, Literal, TextEdit
+from LSP.plugin.core.protocol import URI, Literal, TextEdit
 from LSP.plugin.core.sessions import DocumentUri
 from LSP.plugin.core.typing import Dict, List, Optional, Tuple, TypedDict
 

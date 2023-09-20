@@ -1,110 +1,7 @@
 {
   "name": "code-spell-checker",
-  "description": "Spelling checker for source code",
-  "displayName": "Code Spell Checker",
-  "icon": "images/SpellCheck.png",
-  "author": "Jason Dent",
-  "license": "GPL-3.0-or-later",
-  "version": "3.0.1",
-  "publisher": "streetsidesoftware",
   "private": true,
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/streetsidesoftware/vscode-spell-checker"
-  },
-  "bugs": {
-    "url": "https://github.com/streetsidesoftware/vscode-spell-checker/issues"
-  },
-  "homepage": "https://streetsidesoftware.github.io/vscode-spell-checker",
-  "engines": {
-    "node": ">16.0.0",
-    "vscode": "^1.80.0"
-  },
-  "sponsor": {
-    "url": "https://github.com/sponsors/streetsidesoftware"
-  },
-  "extensionKind": [
-    "workspace"
-  ],
-  "categories": [
-    "Linters",
-    "Other"
-  ],
-  "keywords": [
-    "spell",
-    "checker",
-    "spelling",
-    "spellchecker",
-    "multi-root ready"
-  ],
-  "qna": "marketplace",
-  "activationEvents": [
-    "onStartupFinished"
-  ],
-  "type": "commonjs",
-  "main": "./packages/client/dist/extension.js",
-  "scripts": {
-    "build-package-schema": "yarn workspace code-spell-checker-server build-schema && build-tools update-package-schema && yarn prettier:fix-schema",
-    "build": "yarn build:workspaces && yarn build:schema && yarn build:docs",
-    "build:docs": "yarn run gen-docs",
-    "build:readme": "inject-markdown README.md && prettier -w README.md && inject-markdown docs && prettier -w docs",
-    "build:schema": "yarn run build-package-schema",
-    "build:workspaces": "yarn workspaces run build",
-    "clean": "yarn workspaces run clean && shx rm -rf \"packages/*/node_modules\" \"modules/*/node_modules\" \"modules/**/dist\" ",
-    "build-production": "yarn workspaces run build-production",
-    "build-release": "yarn run build && yarn run package-extension",
-    "gen-docs": "yarn workspace @internal/docs gen-docs",
-    "package-extension": "vsce package -o ./build",
-    "prettier:check": "prettier \"**/*.{ts,tsx,js,json,md}\" -c",
-    "prettier:fix": "yarn prettier:check -w",
-    "prettier:fix-schema": "prettier -w \"**/*.schema.json\"",
-    "test-vsce-build": "vsce package -o ./temp",
-    "remove-test-files": "shx rm -rf \"packages/*/{out,dist,settingsViewer}/**/*.test.js\"",
-    "vscode:prepublish": "yarn run build-production && yarn run remove-test-files",
-    "lint": "yarn lint:eslint && yarn prettier:fix",
-    "lint:eslint": "eslint . --fix --cache",
-    "lint-docs": "prettier -w \"docs/**/*.{md,markdown,yaml,yml,json,html,htm,js,ts}\"",
-    "lint-docs-ci": "prettier -c \"docs/**/*.{md,markdown,yaml,yml,json,html,htm,js,ts}\"",
-    "test-client-integration": "yarn workspace @internal/integration-tests test-integration",
-    "test": "yarn workspaces run test",
-    "update-packages": "yarn upgrade && yarn run package-json-dependency-updater -u && yarn"
-  },
-  "devDependencies": {
-    "@tsconfig/node16": "^16.1.1",
-    "@types/jest": "^29.5.4",
-    "@types/jest-when": "^3.5.2",
-    "@types/node": "^18.17.15",
-    "@types/vscode": "1.80.0",
-    "@types/vscode-webview": "^1.57.2",
-    "@typescript-eslint/eslint-plugin": "^5.62.0",
-    "@typescript-eslint/parser": "^5.62.0",
-    "@vscode/vsce": "^2.21.0",
-    "concurrently": "^8.2.1",
-    "esbuild": "^0.19.2",
-    "eslint": "^8.49.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-import-resolver-typescript": "^3.6.0",
-    "eslint-plugin-import": "^2.28.1",
-    "eslint-plugin-jest": "^27.2.3",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prettier": "^5.0.0",
-    "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-simple-import-sort": "^10.0.0",
-    "eslint-plugin-unicorn": "^48.0.1",
-    "inject-markdown": "^2.0.0",
-    "jest": "^29.6.4",
-    "jest-mock-vscode": "^2.1.0",
-    "jest-when": "^3.6.0",
-    "ovsx": "^0.8.3",
-    "prettier": "^3.0.3",
-    "rollup": "^3.29.1",
-    "rollup-plugin-dts": "^6.0.2",
-    "shx": "^0.3.4",
-    "ts-jest": "^29.1.1",
-    "typescript": "^5.2.2",
-    "vite": "^4.4.9",
-    "vitest": "^0.34.4"
-  },
+  "version": "3.0.1",
   "dependencies": {
     "@cspell/cspell-bundled-dicts": "^7.3.5",
     "@cspell/cspell-types": "^7.3.5",
@@ -112,11 +9,5 @@
     "@types/react": "^17.0.65",
     "cspell": "^7.3.5",
     "regexp-worker": "^2.0.2"
-  },
-  "comment-resolutions": {
-    "@types/react": "Can be removed after moving to react 18."
-  },
-  "resolutions": {
-    "@types/react": "^17.0.44"
   }
 }

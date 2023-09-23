@@ -1,10 +1,10 @@
-from LSP.plugin.core.views import parse_uri
-import sublime
 from .types import AddWordsToConfigFileFromServerArguments, AddWordsToVSCodeSettingsFromServerArguments, EditTextArguments, WorkspaceConfigForDocumentRequest, WorkspaceConfigForDocumentResponse
 from LSP.plugin.core.typing import Any, Callable, Mapping, cast, Dict
+from LSP.plugin.core.views import parse_uri
 from LSP.plugin.formatting import apply_text_edits_to_view
 from lsp_utils import NpmClientHandler, request_handler
 import os
+import sublime
 
 
 def plugin_loaded():
@@ -18,7 +18,7 @@ def plugin_unloaded():
 class LspCspellPlugin(NpmClientHandler):
     package_name = __package__
     server_directory = 'language-server'
-    server_binary_path = os.path.join(server_directory, '_server', 'dist', 'main.js')
+    server_binary_path = os.path.join(server_directory, '_server', 'main.cjs')
 
     @classmethod
     def required_node_version(cls) -> str:
@@ -79,7 +79,7 @@ class LspCspellPlugin(NpmClientHandler):
             return add_words_to_config_file(cast(AddWordsToConfigFileFromServerArguments, params['arguments']))
 
         def add_words_to_dictionary_file(arguments: AddWordsToConfigFileFromServerArguments) -> bool:
-            new_words, uri, config_file = arguments
+            new_words, _uri, config_file = arguments
             _, workspace_config_path = parse_uri(config_file['uri'])
             with open(workspace_config_path, 'a') as f:
                 for word in new_words:

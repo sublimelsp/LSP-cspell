@@ -91,7 +91,10 @@
         "cSpell.ignorePaths":[
             "package-lock.json",
             "node_modules",
-            ".git/objects"
+            "vscode-extension",
+            ".git/objects",
+            ".vscode",
+            ".vscode-insiders"
         ],
         "cSpell.ignoreRegExpList": [],
         "cSpell.ignoreWords": [],

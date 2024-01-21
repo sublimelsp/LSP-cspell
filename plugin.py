@@ -1,7 +1,6 @@
 from .types import AddWordsToConfigFileFromServerArguments, AddWordsToVSCodeSettingsFromServerArguments, EditTextArguments, WorkspaceConfigForDocumentRequest, WorkspaceConfigForDocumentResponse
+from LSP.plugin import apply_text_edits, parse_uri
 from LSP.plugin.core.typing import Any, Callable, Mapping, cast, Dict
-from LSP.plugin.core.views import parse_uri
-from LSP.plugin.formatting import apply_text_edits_to_view
 from lsp_utils import NpmClientHandler, request_handler
 import os
 import sublime
@@ -51,18 +50,18 @@ class LspCspellPlugin(NpmClientHandler):
             return command_is_unhandled()
 
         def handle_edit_text(arguments: EditTextArguments) -> bool:
-            _uri, _document_version, text_edits = arguments
+            _uri, document_version, text_edits = arguments
             view = sublime.active_window().active_view()
             if not view:
                 return command_is_handled()
-            apply_text_edits_to_view(text_edits, view)  # todo: not public API
+            apply_text_edits(view, text_edits, required_view_version=document_version)
             return command_is_handled()
 
         if params['command'] == 'cSpell.editText':
             return handle_edit_text(cast(EditTextArguments, params['arguments']))
 
         def add_words_to_config_file(arguments: AddWordsToConfigFileFromServerArguments) -> bool:
-            new_words, uri, config_file = arguments
+            new_words, _uri, config_file = arguments
             _, workspace_config_path = parse_uri(config_file['uri'])
             workspace_config = {}
             with open(workspace_config_path) as f:

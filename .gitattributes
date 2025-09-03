@@ -1,2 +1,5 @@
 examples/ export-ignore
 download-server.sh export-ignore
+pyrightconfig.json export-ignore
+renovate.json export-ignore
+tox.ini export-ignore

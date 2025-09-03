@@ -8,6 +8,6 @@
     "@tsconfig/node18": "18.2.1",
     "@types/react": "17.0.65",
     "cspell": "7.3.5",
-    "regexp-worker": "2.0.2"
+    "regexp-worker": "4.2.1"
   }
 }

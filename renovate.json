@@ -5,5 +5,19 @@
   ],
   "npm": {
     "enabled": false
-  }
+  },
+  "customManagers": [
+    {
+      "customType": "jsonata",
+      "fileFormat": "json",
+      "managerFilePatterns": [
+        "/^language-server/package.json$/"
+      ],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "streetsidesoftware/vscode-spell-checker",
+      "matchStrings": [
+        "{ \"currentValue\": version }"
+      ]
+    }
+  ]
 }

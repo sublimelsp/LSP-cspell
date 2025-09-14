@@ -18,6 +18,7 @@
       "matchStrings": [
         "{ \"currentValue\": version }"
       ],
+      "extractVersionTemplate": "v?(?<version>.*)$",
       "versioningTemplate": "semver"
     }
   ]

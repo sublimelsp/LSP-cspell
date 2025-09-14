@@ -21,5 +21,13 @@
       "extractVersionTemplate": "v?(?<version>[\\d\\.]*)$",
       "versioningTemplate": "semver"
     }
+  ],
+  "packageRules": [
+    {
+      "matchManagers": [
+        "github-releases"
+      ],
+      "commitMessagePrefix": "feat"
+    }
   ]
 }

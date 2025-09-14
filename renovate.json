@@ -17,7 +17,8 @@
       "depNameTemplate": "streetsidesoftware/vscode-spell-checker",
       "matchStrings": [
         "{ \"currentValue\": version }"
-      ]
+      ],
+      "versioningTemplate": "semver"
     }
   ]
 }

@@ -8,7 +8,7 @@ GITHUB_REPO_NAME="streetsidesoftware/vscode-spell-checker"
 # download the release
 # more info here - https://gist.github.com/steinwaywhw/a4cd19cda655b8249d908261a62687f8
 
-wget "$(curl -s https://api.github.com/repos/${GITHUB_REPO_NAME}/releases/latest | grep 'browser_' | cut -d\" -f4)"
+wget "$(curl -s https://api.github.com/repos/${GITHUB_REPO_NAME}/releases/latest | jq -r '.assets[0].browser_download_url')"
 
 # clean up
 rm -rf ./language-server-temp
@@ -21,13 +21,13 @@ unzip -a code-spell-checker-*.vsix -d ./language-server-temp
 rm ./code-spell-checker-*.vsix
 
 # ./language-server/package.json is required for lsp_utils to work. Reuse package.json from the extension folder.
-jq '{name,private,version,dependencies}' ./language-server-temp/extension/package.json > ./language-server/package.json
+jq '{name,version,private,type,dependencies}' ./language-server-temp/extension/package.json > ./language-server/package.json
 cp -R ./language-server-temp/extension/packages/_server/dist ./language-server/_server
 
 rm -rf ./language-server-temp
 
 cd ./language-server
-npm i --omit dev # to generate a ./language-server/package-lock.json file
+npm i --omit dev --lockfile-version 2 # to generate a ./language-server/package-lock.json file
 rm -rf ./node_modules # to clean up after `npm install`, we only did it to generate the package-lock.json
 cd ..
 

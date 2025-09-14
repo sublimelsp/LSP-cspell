@@ -24,8 +24,8 @@
   ],
   "packageRules": [
     {
-      "matchManagers": [
-        "github-releases"
+      "matchDatasources": [
+        "jsonata"
       ],
       "commitMessagePrefix": "feat"
     }

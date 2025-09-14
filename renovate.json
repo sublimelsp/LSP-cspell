@@ -27,7 +27,7 @@
       "matchDatasources": [
         "github-releases"
       ],
-      "commitMessagePrefix": "feat"
+      "commitMessagePrefix": "feat:"
     }
   ]
 }

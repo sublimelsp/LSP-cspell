@@ -1,13 +1,13 @@
 {
   "name": "code-spell-checker",
+  "version": "4.2.6",
   "private": true,
-  "version": "3.0.1",
+  "type": "module",
   "dependencies": {
-    "@cspell/cspell-bundled-dicts": "7.3.5",
-    "@cspell/cspell-types": "7.3.5",
-    "@tsconfig/node18": "18.2.1",
-    "@types/react": "17.0.65",
-    "cspell": "7.3.5",
-    "regexp-worker": "2.0.2"
+    "@cspell/cspell-bundled-dicts": "^9.2.1",
+    "@cspell/cspell-types": "^9.2.1",
+    "@cspell/dict-cspell-bundle": "^2.0.27",
+    "cspell": "^9.2.1",
+    "regexp-worker": "^4.2.1"
   }
 }

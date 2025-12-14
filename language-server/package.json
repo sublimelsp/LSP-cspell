@@ -1,13 +1,13 @@
 {
   "name": "code-spell-checker",
-  "version": "4.2.6",
+  "version": "4.4.0",
   "private": true,
   "type": "module",
   "dependencies": {
-    "@cspell/cspell-bundled-dicts": "^9.2.1",
-    "@cspell/cspell-types": "^9.2.1",
-    "@cspell/dict-cspell-bundle": "^2.0.27",
-    "cspell": "^9.2.1",
-    "regexp-worker": "^4.2.1"
+    "@cspell/cspell-bundled-dicts": "^9.4.0",
+    "@cspell/cspell-types": "^9.4.0",
+    "@cspell/dict-cspell-bundle": "^2.0.41",
+    "cspell": "^9.4.0",
+    "regexp-worker": "^4.3.0"
   }
 }

@@ -1,6 +1,5 @@
 from __future__ import annotations
 from typing_extensions import override
-from .types import AddWordsToConfigFileFromServerArguments, AddWordsToVSCodeSettingsFromServerArguments, EditTextArguments, WorkspaceConfigForDocumentRequest, WorkspaceConfigForDocumentResponse
 from LSP.plugin import apply_text_edits, parse_uri
 from lsp_utils import NpmClientHandler, request_handler
 from typing import cast, TYPE_CHECKING, final
@@ -8,6 +7,7 @@ import os
 import sublime
 
 if TYPE_CHECKING:
+    from .types import AddWordsToConfigFileFromServerArguments, AddWordsToVSCodeSettingsFromServerArguments, EditTextArguments, WorkspaceConfigForDocumentRequest, WorkspaceConfigForDocumentResponse
     from collections.abc import Callable
     from LSP.protocol import ExecuteCommandParams
 
@@ -100,7 +100,7 @@ class LspCspellPlugin(NpmClientHandler):
         def add_words_to_user_settings(arguments: AddWordsToVSCodeSettingsFromServerArguments) -> bool:
             new_words, _, _ = arguments
             settings = sublime.load_settings('LSP-cspell.sublime-settings')
-            server_settings = cast(dict[str, str], settings.get('settings', {}))
+            server_settings = cast('dict[str, str]', settings.get('settings', {}))
             old_words = server_settings.get('cSpell.words') or []
             words = old_words + new_words  # type: ignore
             server_settings['cSpell.words'] = words

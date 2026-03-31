@@ -1,13 +1,23 @@
 from __future__ import annotations
+
+from LSP.plugin import apply_text_edits
+from LSP.plugin import parse_uri
+from LSP.plugin import Promise
+from LSP.plugin import request_handler
+from lsp_utils import NpmClientHandler
+from typing import cast
+from typing import final
+from typing import TYPE_CHECKING
 from typing_extensions import override
-from LSP.plugin import apply_text_edits, parse_uri
-from lsp_utils import NpmClientHandler, request_handler
-from typing import cast, TYPE_CHECKING, final
 import os
 import sublime
 
 if TYPE_CHECKING:
-    from .types import AddWordsToConfigFileFromServerArguments, AddWordsToVSCodeSettingsFromServerArguments, EditTextArguments, WorkspaceConfigForDocumentRequest, WorkspaceConfigForDocumentResponse
+    from .types import AddWordsToConfigFileFromServerArguments
+    from .types import AddWordsToVSCodeSettingsFromServerArguments
+    from .types import EditTextArguments
+    from .types import WorkspaceConfigForDocumentRequest
+    from .types import WorkspaceConfigForDocumentResponse
     from collections.abc import Callable
     from LSP.protocol import ExecuteCommandParams
 
@@ -22,7 +32,7 @@ def plugin_unloaded():
 
 @final
 class LspCspellPlugin(NpmClientHandler):
-    package_name = __package__
+    package_name = str(__package__)
     server_directory = 'language-server'
     server_binary_path = os.path.join(server_directory, '_server', 'main.cjs')
 
@@ -33,10 +43,10 @@ class LspCspellPlugin(NpmClientHandler):
 
     @request_handler('_onWorkspaceConfigForDocumentRequest')
     def on_workspace_config_for_document(
-        self, params: WorkspaceConfigForDocumentRequest, respond: Callable[[WorkspaceConfigForDocumentResponse], None]
-    ) -> None:
+        self, params: WorkspaceConfigForDocumentRequest
+    ) -> Promise[WorkspaceConfigForDocumentResponse]:
         # It looks like this method is necessary to enable code actions...
-        respond({
+        return Promise.resolve({
             'uri': None,
             'workspaceFile': None,
             'workspaceFolder': None,
@@ -90,8 +100,7 @@ class LspCspellPlugin(NpmClientHandler):
             new_words, _uri, config_file = arguments
             _, workspace_config_path = parse_uri(config_file['uri'])
             with open(workspace_config_path, 'a') as f:
-                for word in new_words:
-                    f.write("\n" + word)
+                f.writelines("\n" + word for word in new_words)
             return command_is_handled()
 
         if command['command'] == "cSpell.addWordsToDictionaryFileFromServer":

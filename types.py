@@ -1,6 +1,13 @@
 from __future__ import annotations
-from LSP.plugin.core.protocol import URI, TextEdit
-from typing import Dict, List, Optional, Tuple, TypedDict, Literal, TYPE_CHECKING
+
+from LSP.protocol import TextEdit
+from LSP.protocol import URI
+from typing import Dict
+from typing import List
+from typing import Literal
+from typing import Tuple
+from typing import TYPE_CHECKING
+from typing import TypedDict
 
 if TYPE_CHECKING:
     from LSP.protocol import DocumentUri

@@ -45,7 +45,7 @@ class LspCspellPlugin(LspPlugin):
             cls.plugin_storage_path,
             ResourcePath('Packages', package_name, 'language-server'),
             Path('_server', 'main.cjs'),
-            '>16.0.0',
+            node_version_requirement='>16.0.0',
         )
 
     @request_handler('_onWorkspaceConfigForDocumentRequest')

@@ -1,16 +1,13 @@
 from __future__ import annotations
 
+from LSP.protocol import DocumentUri
 from LSP.protocol import TextEdit
 from LSP.protocol import URI
 from typing import Dict
 from typing import List
 from typing import Literal
 from typing import Tuple
-from typing import TYPE_CHECKING
 from typing import TypedDict
-
-if TYPE_CHECKING:
-    from LSP.protocol import DocumentUri
 
 
 class WorkspaceConfigForDocumentRequest(TypedDict):
@@ -25,15 +22,12 @@ class WorkspaceConfigForDocumentResponse(TypedDict):
     words: FieldExistsInTarget
     ignoreWords: FieldExistsInTarget
 
-DocumentVersion = int
-EditTextArguments = Tuple[URI, DocumentVersion, List[TextEdit]]
-Word = str
-CurrentFileURI = URI
+EditTextArguments = Tuple[DocumentUri, int, List[TextEdit]]
 
 class ConfigFileLocation(TypedDict):
-    uri: URI
+    uri: DocumentUri
     name: str
 
-AddWordsToConfigFileFromServerArguments = Tuple[List[Word], CurrentFileURI, ConfigFileLocation]
+AddWordsToConfigFileFromServerArguments = Tuple[List[str], DocumentUri, ConfigFileLocation]
 
-AddWordsToVSCodeSettingsFromServerArguments = Tuple[List[Word], CurrentFileURI, Literal['user']]
+AddWordsToVSCodeSettingsFromServerArguments = Tuple[List[str], DocumentUri, Literal['user']]

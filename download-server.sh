@@ -27,7 +27,7 @@ cp -R ./language-server-temp/extension/packages/_server/dist ./language-server/_
 rm -rf ./language-server-temp
 
 cd ./language-server
-npm i --omit dev --lockfile-version 2 # to generate a ./language-server/package-lock.json file
+npm i --omit dev # to generate a ./language-server/package-lock.json file
 rm -rf ./node_modules # to clean up after `npm install`, we only did it to generate the package-lock.json
 cd ..
 

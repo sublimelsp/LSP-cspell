@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from LSP.plugin import apply_text_edits
+from LSP.plugin import ClientResponse
 from LSP.plugin import command_handler
 from LSP.plugin import LspPlugin
 from LSP.plugin import notification_handler
@@ -48,6 +49,20 @@ class LspCspellPlugin(LspPlugin):
             Path('_server', 'main.cjs'),
             node_version_requirement='>16.0.0',
         )
+
+    @override
+    def on_pre_send_response_async(self, response: ClientResponse) -> None:
+        # Merge words added through the "Add to user settings" code action (stored in root-level "userWords") into
+        # "cSpell.words". Kept out of "settings" so that saving them doesn't copy all default settings to user settings.
+        if response['method'] != 'workspace/configuration' or not (session := self.weaksession()):
+            return
+        user_words = cast('list[str]', session.config.root_settings.get('userWords') or [])
+        if not user_words:
+            return
+        for item, result in zip(response['params']['items'], response['result']):
+            if item.get('section') == 'cSpell' and isinstance(result, dict):
+                words = cast('list[str]', result.get('words') or [])
+                result['words'] = list(dict.fromkeys(words + user_words))
 
     @request_handler('_onWorkspaceConfigForDocumentRequest')
     def on_workspace_config_for_document(
@@ -110,10 +125,7 @@ class LspCspellPlugin(LspPlugin):
         if arguments:
             new_words, _, _ = cast('AddWordsToVSCodeSettingsFromServerArguments', arguments)
             settings = sublime.load_settings('LSP-cspell.sublime-settings')
-            server_settings = cast('dict[str, Any]', settings.get('settings', {}))
-            old_words = cast('list[str]', server_settings.get('cSpell.words', []))
-            words = old_words + new_words
-            server_settings['cSpell.words'] = words
-            settings.set('settings', server_settings)
+            old_words = cast('list[str]', settings.get('userWords') or [])
+            settings.set('userWords', list(dict.fromkeys(old_words + new_words)))
             sublime.save_settings('LSP-cspell.sublime-settings')
         return Promise.resolve(None)

@@ -3,6 +3,7 @@ from __future__ import annotations
 from LSP.plugin import apply_text_edits
 from LSP.plugin import command_handler
 from LSP.plugin import LspPlugin
+from LSP.plugin import notification_handler
 from LSP.plugin import OnPreStartContext
 from LSP.plugin import parse_uri
 from LSP.plugin import Promise
@@ -21,6 +22,7 @@ if TYPE_CHECKING:
     from .types import AddWordsToConfigFileFromServerArguments
     from .types import AddWordsToVSCodeSettingsFromServerArguments
     from .types import EditTextArguments
+    from .types import OnSpellCheckDocumentStep
     from .types import WorkspaceConfigForDocumentRequest
     from .types import WorkspaceConfigForDocumentResponse
 
@@ -60,6 +62,11 @@ class LspCspellPlugin(LspPlugin):
             'words': {},
             'ignoreWords': {}
         })
+
+    @notification_handler('_onSpellCheckDocument')
+    def on_spell_check_document(self, params: OnSpellCheckDocumentStep) -> None:
+        # Progress report for each spell check step. VS Code extension only uses it in tests so ignore it.
+        pass
 
     @command_handler('cSpell.editText')
     def handle_edit_text_command(self, arguments: list[Any] | None) -> Promise[None]:

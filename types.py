@@ -8,7 +8,6 @@ from typing import List
 from typing import Literal
 from typing import Tuple
 from typing import TypedDict
-from typing_extensions import NotRequired
 
 
 class WorkspaceConfigForDocumentRequest(TypedDict):
@@ -22,15 +21,6 @@ class WorkspaceConfigForDocumentResponse(TypedDict):
     workspaceFolder: URI | None
     words: FieldExistsInTarget
     ignoreWords: FieldExistsInTarget
-
-class OnSpellCheckDocumentStep(TypedDict):
-    uri: DocumentUri
-    version: int
-    step: str
-    seq: int
-    ts: int
-    numIssues: NotRequired[int]
-    done: NotRequired[bool]
 
 EditTextArguments = Tuple[DocumentUri, int, List[TextEdit]]
 

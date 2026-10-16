@@ -22,7 +22,6 @@ if TYPE_CHECKING:
     from .types import AddWordsToConfigFileFromServerArguments
     from .types import AddWordsToVSCodeSettingsFromServerArguments
     from .types import EditTextArguments
-    from .types import OnSpellCheckDocumentStep
     from .types import WorkspaceConfigForDocumentRequest
     from .types import WorkspaceConfigForDocumentResponse
 
@@ -64,7 +63,7 @@ class LspCspellPlugin(LspPlugin):
         })
 
     @notification_handler('_onSpellCheckDocument')
-    def on_spell_check_document(self, params: OnSpellCheckDocumentStep) -> None:
+    def on_spell_check_document(self, params: Any) -> None:
         # Progress report for each spell check step. VS Code extension only uses it in tests so ignore it.
         pass
 

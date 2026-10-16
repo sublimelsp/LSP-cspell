@@ -62,6 +62,7 @@ class LspCspellPlugin(LspPlugin):
         for item, result in zip(response['params']['items'], response['result']):
             if item.get('section') == 'cSpell' and isinstance(result, dict):
                 words = cast('list[str]', result.get('words') or [])
+                # Remove duplicates while preserving order.
                 result['words'] = list(dict.fromkeys(words + user_words))
 
     @request_handler('_onWorkspaceConfigForDocumentRequest')
@@ -126,6 +127,7 @@ class LspCspellPlugin(LspPlugin):
             new_words, _, _ = cast('AddWordsToVSCodeSettingsFromServerArguments', arguments)
             settings = sublime.load_settings('LSP-cspell.sublime-settings')
             old_words = cast('list[str]', settings.get('userWords') or [])
+            # Remove duplicates while preserving order.
             settings.set('userWords', list(dict.fromkeys(old_words + new_words)))
             sublime.save_settings('LSP-cspell.sublime-settings')
         return Promise.resolve(None)

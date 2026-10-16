@@ -3,6 +3,7 @@ from __future__ import annotations
 from LSP.plugin import apply_text_edits
 from LSP.plugin import command_handler
 from LSP.plugin import LspPlugin
+from LSP.plugin import notification_handler
 from LSP.plugin import OnPreStartContext
 from LSP.plugin import parse_uri
 from LSP.plugin import Promise
@@ -60,6 +61,16 @@ class LspCspellPlugin(LspPlugin):
             'words': {},
             'ignoreWords': {}
         })
+
+    @notification_handler('_onSpellCheckDocument')
+    def on_spell_check_document(self, params: Any) -> None:
+        # Progress report for each spell check step. VS Code extension only uses it in tests so ignore it.
+        pass
+
+    @notification_handler('_onDocumentConfigChange')
+    def on_document_config_change(self, params: Any) -> None:
+        # VS Code extension uses it to invalidate its cache of getConfigurationForDocument results. We have none.
+        pass
 
     @command_handler('cSpell.editText')
     def handle_edit_text_command(self, arguments: list[Any] | None) -> Promise[None]:

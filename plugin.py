@@ -67,6 +67,11 @@ class LspCspellPlugin(LspPlugin):
         # Progress report for each spell check step. VS Code extension only uses it in tests so ignore it.
         pass
 
+    @notification_handler('_onDocumentConfigChange')
+    def on_document_config_change(self, params: Any) -> None:
+        # VS Code extension uses it to invalidate its cache of getConfigurationForDocument results. We have none.
+        pass
+
     @command_handler('cSpell.editText')
     def handle_edit_text_command(self, arguments: list[Any] | None) -> Promise[None]:
         if arguments and (session := self.weaksession()):

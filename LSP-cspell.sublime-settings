@@ -122,6 +122,8 @@
         "cSpell.words": [],
         "cSpell.workspaceRootPath": ""
     },
+    // Words added through the "Add to user settings" code action. Merged into `cSpell.words`.
+    "userWords": [],
     // The path to the server binary used to start the language server.
     // Use `auto` for the package to manage (install/update) the server automatically.
     // NOTE: Change this instead of directly updating `command` - the `${server_path}` variable is dynamically resolved based on this setting.

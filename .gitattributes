@@ -1,5 +1,10 @@
-examples/ export-ignore
+/.gitattributes export-ignore
+/.github/ export-ignore
+/.gitignore export-ignore
 download-server.sh export-ignore
+examples/ export-ignore
+/pyproject.toml export-ignore
 pyrightconfig.json export-ignore
 renovate.json export-ignore
+/tests/ export-ignore
 tox.ini export-ignore

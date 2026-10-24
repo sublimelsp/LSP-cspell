@@ -5,10 +5,18 @@ set -e
 
 GITHUB_REPO_NAME="streetsidesoftware/vscode-spell-checker"
 
+# The version to download, such as 4.10.0. Defaults to the latest release.
+VERSION="$1"
+if [ -n "$VERSION" ]; then
+    RELEASE="tags/code-spell-checker-v${VERSION}"
+else
+    RELEASE="latest"
+fi
+
 # download the release
 # more info here - https://gist.github.com/steinwaywhw/a4cd19cda655b8249d908261a62687f8
 
-wget "$(curl -s https://api.github.com/repos/${GITHUB_REPO_NAME}/releases/latest | jq -r '.assets[0].browser_download_url')"
+wget "$(curl -sf "https://api.github.com/repos/${GITHUB_REPO_NAME}/releases/${RELEASE}" | jq -r '.assets[0].browser_download_url')"
 
 # clean up
 rm -rf ./language-server-temp

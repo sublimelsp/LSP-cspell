@@ -9,35 +9,62 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
-  pull-requests: write
-  repository-projects: write
+  contents: read
 
 jobs:
   download-server:
     name: Download and update server
     runs-on: ubuntu-latest
+    env:
+      COMMIT_MESSAGE: '[automated commit] update server'
+      # PRs from forks get no secrets, so the server can't be pushed for them.
+      IS_FORK: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name != github.repository }}
 
     steps:
+      # Pushes made with GITHUB_TOKEN don't trigger workflows, so the smoke test wouldn't run on the downloaded server.
+      - uses: actions/create-github-app-token@v3
+        id: app-token
+        if: env.IS_FORK == 'false'
+        with:
+          client-id: ${{ vars.SUBLIMELSP_APP_CLIENT_ID }}
+          private-key: ${{ secrets.SUBLIMELSP_APP_PRIVATE_KEY }}
+          permission-contents: write
+
       - uses: actions/setup-node@v7
 
       - uses: actions/checkout@v7
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          token: ${{ steps.app-token.outputs.token || github.token }}
 
+      # The version that Renovate updated in language-server/package.json. Skipped on the commit that this job pushed:
+      # `npm i` can resolve newer dependencies on each run, so downloading again would push again, and so on.
       - name: Run download-server.sh script
         run: |
-          ./download-server.sh
+          if [ "$(git log -1 --format=%s)" = "$COMMIT_MESSAGE" ]; then
+            echo 'The server was already downloaded for this commit.'
+            exit 0
+          fi
+          ./download-server.sh "$(jq -r .version language-server/package.json)"
 
-      - name: Check for modified files
-        id: git-check
-        run: echo "GIT_MODIFIED=$(if [ -n "$(git status --porcelain)" ]; then echo "true"; else echo "false"; fi)" >> "$GITHUB_OUTPUT"
-
-      - name: Update changes in the PR
-        if: steps.git-check.outputs.GIT_MODIFIED == 'true'
-        run:  |
-          git config --global user.name github-actions[bot]
-          git config --global user.email github-actions[bot]@users.noreply.github.com
+      # Fails while the server isn't downloaded for the new version, so that the PR isn't merged before it is. The push
+      # runs the checks again on the new commit.
+      - name: Push the downloaded server
+        env:
+          BRANCH: ${{ github.head_ref || github.ref_name }}
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            exit 0
+          fi
+          git status --short | head -20
+          if [ "$IS_FORK" = 'true' ]; then
+            echo "::error::The server needs to be downloaded for the new version: run ./download-server.sh"
+            exit 1
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
           git add -A
-          git commit -m '[automated commit] update server'
-          git push
+          git commit -m "$COMMIT_MESSAGE"
+          git push origin "HEAD:refs/heads/$BRANCH"
+          echo "::error::Pushed the downloaded server to the PR. The checks run again on the new commit."
+          exit 1

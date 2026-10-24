@@ -1,7 +1,8 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "github>sublimelsp/renovate-preset"
+    "github>sublimelsp/renovate-preset",
+    "github>sublimelsp/renovate-preset:automerge-server"
   ],
   "npm": {
     "enabled": false
@@ -20,14 +21,6 @@
       ],
       "extractVersionTemplate": "v?(?<version>[\\d\\.]*)$",
       "versioningTemplate": "semver"
-    }
-  ],
-  "packageRules": [
-    {
-      "matchDatasources": [
-        "github-releases"
-      ],
-      "commitMessagePrefix": "feat:"
     }
   ]
 }
